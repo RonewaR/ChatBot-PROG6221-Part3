@@ -1,5 +1,4 @@
-//Chatbot response system handles user inputs and returns predefined replies
-using System;
+﻿using System;
 
 public static class Responses
 {

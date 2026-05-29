@@ -1,29 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
-class Program
+namespace ChatbotApp
 {
-    static void Main(string[] args)
+    internal static class Program
     {
-        UIHelper.ShowAsciiArt();
-
-        // 🔊 Voice greeting (beep sound)
-        VoiceGreeting.PlayGreeting();
-
-        Console.ForegroundColor = ConsoleColor.Cyan;
-        Console.Write("Enter your name: ");
-        Console.ResetColor();
-
-        string name = Console.ReadLine();
-
-        if (string.IsNullOrWhiteSpace(name))
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Invalid input! Name cannot be empty.");
-            Console.ResetColor();
-            return;
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
         }
-
-        Chatbot bot = new Chatbot(name);
-        bot.StartChat();
     }
 }

@@ -1,34 +1,23 @@
-﻿using System;
-using System.Threading;
+﻿using System.Speech.Synthesis;
+using System.Runtime.Versioning;
 
+[SupportedOSPlatform("windows")]
 public static class VoiceGreeting
 {
-    public static void PlayGreeting()
+    private static SpeechSynthesizer speaker = new SpeechSynthesizer();
+
+    public static void Speak(string text)
     {
-        Console.ForegroundColor = ConsoleColor.Blue;
-        Console.WriteLine("Playing greeting sound...");
-        Console.ResetColor();
+        speaker.Volume = 100;
+        speaker.Rate = 0;
+        speaker.SelectVoiceByHints(VoiceGender.Female);
 
-        Console.WriteLine("Hello, welcome to the chatbot!");
+        speaker.SpeakAsyncCancelAll();
+        speaker.SpeakAsync(text);
+    }
 
-        // Simulated sound effect (works everywhere)
-        for (int i = 0; i < 3; i++)
-        {
-            Console.Write(".");
-            Thread.Sleep(400);
-        }
-
-        Console.WriteLine();
-
-        try
-        {
-            Console.Beep(700, 150);
-            Console.Beep(900, 150);
-            Console.Beep(1100, 200);
-        }
-        catch
-        {
-            Console.WriteLine("Sound not supported on this device.");
-        }
+    public static void PlayGreeting(string name)
+    {
+        Speak("Hello " + name + ", welcome to your chatbot application.");
     }
 }
