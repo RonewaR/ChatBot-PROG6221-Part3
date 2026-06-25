@@ -1,7 +1,6 @@
 ﻿using System.Speech.Synthesis;
-using System.Runtime.Versioning;
 
-[SupportedOSPlatform("windows")]
+
 public static class VoiceGreeting
 {
     private static SpeechSynthesizer speaker = new SpeechSynthesizer();
